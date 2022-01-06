@@ -1,6 +1,6 @@
 import React from 'react'
 import * as Yup from 'yup'
-import {ErrorMessage, useFormik} from 'formik'
+import {ErrorMessage, Formik,Form, Field} from 'formik'
 // below is example for using useFormik hook 
 const initialValues = {
     name:'Enter name',
@@ -26,31 +26,33 @@ const validaionSchema = Yup.object({
     email:Yup.string().email('invalid email').required('Required!')
 })
 
-function StudentFormBasic () {
-    const formik = useFormik({
-        initialValues,
-        onSubmit,
-        validaionSchema
-    })
-    console.log("Form value",formik.touched)
+function StudentFormAdv () {
+    // const formik = useFormik({
+    //     initialValues,
+    //     onSubmit,
+    //     validaionSchema
+    // })
+    // console.log("Form value",formik.touched)
     return (<div>
-        <form onSubmit={formik.handleSubmit}>
+        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validaionSchema}>
+        <Form>
             <div className='form-control'>
             <label htmlFor='name'>Name</label>
-            <input type="text" id="name" name="name" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.name}/>
-            {formik.touched.name && formik.errors.name? <div className='error'>{formik.errors.name}</div>:null}
+            <Field type="text" id="name" name="name" />
+            <ErrorMessage name="name"></ErrorMessage>
             </div>
             <div className='form-control'>
             <label htmlFor='email'>Email</label>
-            <input type="text" id="email" name="email" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.email}/>
-            {formik.touched.email && formik.errors.email?<div className='error'>{formik.errors.email}</div>:null}
+            <Field type="text" id="email" name="email" />
+            <ErrorMessage name="email"></ErrorMessage>
             </div>
             <button type="submit">Submit</button>
-        </form>
+        </Form>
+        </Formik>
     </div>);
 }
 
-export default StudentFormBasic
+export default StudentFormAdv
 
 // first name 
 // last name 

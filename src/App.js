@@ -1,9 +1,11 @@
 import './App.css';
-import StudentFormBasic from './components/StudentFormBasic';
+//import StudentFormBasic from './components/StudentFormBasic';
+import StudentFormAdv from './components/StudentFormAdv';
 function App() {
   return (
     <div className='container'>
-      <StudentFormBasic></StudentFormBasic>
+      {/* <StudentFormBasic></StudentFormBasic> */}
+      <StudentFormAdv></StudentFormAdv>
     </div>
   );
 }
